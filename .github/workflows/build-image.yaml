@@ -1,30 +1,27 @@
 name: build-image
+
 on:
   push:
     branches:
       - main
-    paths: 
-      - /src/main/java/org/acme/**
-  
+    paths:
+      - 'src/main/java/org/acme/**'
+
 jobs:
   push-store-image:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GitHub Action
+        uses: actions/checkout@main
 
-  steps:
-    - name: 'Checkout GitHub Action'
-      uses: actions/checkout@main
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: 'Login to GitHub Container Registry'
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{github.actor}}
-        password: ${{secrets.GITHUB_TOKEN}}
-
-    - name: 'Build Inventory Image'
-      run: |
-        docker build . --tag ghcr.io/ansahaRH-Lilly/quarkus-ping-test:latest
-        docker push ghcr.io/ansahaRH-Lilly/quarkus-ping-test:latest
-
-
-
+      - name: Build Inventory Image
+        run: |
+          docker build . --tag ghcr.io/ansahaRH-Lilly/quarkus-ping-test:latest
+          docker push ghcr.io/ansahaRH-Lilly/quarkus-ping-test:latest
