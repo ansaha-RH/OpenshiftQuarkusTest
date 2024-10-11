@@ -23,5 +23,5 @@ jobs:
 
       - name: Build Inventory Image
         run: |
-          docker build . --tag ghcr.io/ansahaRH-Lilly/quarkus-ping-test:latest
-          docker push ghcr.io/ansahaRH-Lilly/quarkus-ping-test:latest
+          docker build . --tag ghcr.io/ansaharh-lilly/quarkus-ping-test:latest
+          docker push ghcr.io/ansaharh-lilly/quarkus-ping-test:latest
