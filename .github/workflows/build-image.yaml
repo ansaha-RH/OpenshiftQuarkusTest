@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'src/main/java/org/acme/**'
+      - 'Dockerfile'  # Add this line to trigger on Dockerfile changes
 
 jobs:
   push-store-image:
@@ -23,5 +24,14 @@ jobs:
 
       - name: Build Inventory Image
         run: |
-          docker build . --tag ghcr.io/ansaharh-lilly/quarkus-ping-test:latest
+          if [ -f Dockerfile ]; then
+            echo "Using Dockerfile in root directory"
+            docker build . --tag ghcr.io/ansaharh-lilly/quarkus-ping-test:latest
+          elif [ -f src/main/docker/Dockerfile.jvm ]; then
+            echo "Using Dockerfile.jvm in src/main/docker directory"
+            docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/ansaharh-lilly/quarkus-ping-test:latest .
+          else
+            echo "Error: No Dockerfile found"
+            exit 1
+          fi
           docker push ghcr.io/ansaharh-lilly/quarkus-ping-test:latest
