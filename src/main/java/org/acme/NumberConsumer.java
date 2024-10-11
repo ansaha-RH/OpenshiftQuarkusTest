@@ -13,4 +13,4 @@ public class NumberConsumer {
     }
 }
 
-/*test */
+/*test #2 */
