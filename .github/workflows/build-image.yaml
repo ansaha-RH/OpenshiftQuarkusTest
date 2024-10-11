@@ -1,7 +1,7 @@
 name: build-image
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
