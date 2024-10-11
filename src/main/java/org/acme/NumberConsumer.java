@@ -12,3 +12,5 @@ public class NumberConsumer {
         LOG.infof("Received number: %d", number);
     }
 }
+
+/*test */
