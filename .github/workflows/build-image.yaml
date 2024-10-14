@@ -37,10 +37,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Lowercase the repo name
+        run: |
+          echo "REPO_NAME=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
       - name: Build and push Docker image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/quarkus-ping-test:latest
+          IMAGE_NAME=ghcr.io/${REPO_NAME}:latest
           docker build -f src/main/docker/Dockerfile.jvm -t $IMAGE_NAME .
           docker push $IMAGE_NAME
