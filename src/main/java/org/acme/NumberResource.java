@@ -5,18 +5,17 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
-
 import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
 @ApplicationScoped
 @Path("/numbers")
 public class NumberResource {
-
     @Channel("generated-number")
-    Emitter<Integer> numberEmitter;
+    Emitter<Map<String, Object>> numberEmitter;
 
     private Random random = new Random();
 
@@ -25,10 +24,12 @@ public class NumberResource {
     public String triggerNumber() {
         int randomNumber = random.nextInt(100);
         long timestamp = System.currentTimeMillis();
-        RandomNumber event = new RandomNumber(randomNumber, timestamp);
+        
+        Map<String, Object> event = new HashMap<>();
+        event.put("number", randomNumber);
+        event.put("timestamp", timestamp);
         
         numberEmitter.send(event);
         return "Sent: " + randomNumber + " at " + timestamp;
     }
 }
-
