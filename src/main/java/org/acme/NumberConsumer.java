@@ -20,3 +20,5 @@ public class NumberConsumer {
         LOG.infof("Received number: %d at timestamp: %d", number, timestamp);
     }
 }
+
+/* test 1*/
