@@ -8,8 +8,8 @@ public class NumberConsumer {
     private static final Logger LOG = Logger.getLogger(NumberConsumer.class);
 
     @Incoming("numbers")
-    public void consume(Integer number) {
-        LOG.infof("Received number: %d", number);
+    public void consume(Integer number, Long timestamp) {
+        LOG.infof("Received number: %d at %d", number, timestamp);
     }
 }
 

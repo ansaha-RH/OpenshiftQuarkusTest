@@ -24,7 +24,11 @@ public class NumberResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String triggerNumber() {
         int randomNumber = random.nextInt(100);
-        numberEmitter.send(randomNumber);
-        return "Sent: " + randomNumber;
+        long timestamp = System.currentTimeMillis();
+        RandomNumber event = new RandomNumber(randomNumber, timestamp);
+        
+        numberEmitter.send(event);
+        return "Sent: " + randomNumber + " at " + timestamp;
     }
 }
+
