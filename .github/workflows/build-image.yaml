@@ -41,7 +41,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          IMAGE_NAME=ghcr.io/ansaharh-lilly/quarkus-ping-test:latest
+          IMAGE_NAME=ghcr.io/ansaha/quarkus-ping-test:latest
           docker build -f src/main/docker/Dockerfile.jvm -t $IMAGE_NAME .
           echo $GITHUB_TOKEN | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           docker push $IMAGE_NAME
