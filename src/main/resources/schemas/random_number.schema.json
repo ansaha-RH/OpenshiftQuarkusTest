@@ -1,18 +1,13 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "title": "RandomNumber",
-    "description": "A schema for random number events",
     "properties": {
-      "value": {
-        "type": "integer",
-        "description": "A random integer between 0 and 99 (inclusive)"
+      "number": {
+        "type": "integer"
       },
       "timestamp": {
-        "type": "integer",
-        "description": "The timestamp when the number was generated (milliseconds since Unix epoch)",
-        "format": "int64"
+        "type": "integer"
       }
     },
-    "required": ["value", "timestamp"]
+    "required": ["number", "timestamp"]
   }
