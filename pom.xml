@@ -56,6 +56,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-resteasy-jsonb</artifactId>
+        </dependency>
+
         <!-- OpenShift -->
         <dependency>
             <groupId>io.quarkus</groupId>
