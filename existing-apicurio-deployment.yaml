@@ -1,0 +1,41 @@
+apiVersion: registry.apicur.io/v1
+kind: ApicurioRegistry
+metadata:
+  creationTimestamp: "2024-10-15T15:50:56Z"
+  generation: 3
+  name: apicurioregistry-mem
+  namespace: kafka-apicurio-test
+  resourceVersion: "49431"
+  uid: 19a58f93-63c1-401d-aef9-ec744383981e
+spec:
+  configuration:
+    kafkasql:
+      bootstrapServers: my-cluster-kafka-bootstrap.kafka-apicurio-test.svc:9092
+    persistence: kafkasql
+  deployment:
+    host: apicurioregistry-mem.kafka-apicurio-test.router-default.apps.cluster-945vs.945vs.sandbox191.opentlc.com
+status:
+  conditions:
+  - lastTransitionTime: "2024-10-15T15:51:19Z"
+    message: ""
+    reason: Reconciled
+    status: "True"
+    type: Ready
+  info:
+    host: apicurioregistry-mem.kafka-apicurio-test.router-default.apps.cluster-945vs.945vs.sandbox191.opentlc.com
+  managedResources:
+  - kind: Deployment
+    name: apicurioregistry-mem-deployment
+    namespace: kafka-apicurio-test
+  - kind: Service
+    name: apicurioregistry-mem-service
+    namespace: kafka-apicurio-test
+  - kind: Ingress
+    name: apicurioregistry-mem-ingress
+    namespace: kafka-apicurio-test
+  - kind: NetworkPolicy
+    name: apicurioregistry-mem-networkpolicy
+    namespace: kafka-apicurio-test
+  - kind: PodDisruptionBudget
+    name: apicurioregistry-mem-pdb
+    namespace: kafka-apicurio-test
