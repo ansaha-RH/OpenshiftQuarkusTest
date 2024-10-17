@@ -1,0 +1,14 @@
+apiVersion: registry.apicur.io/v1
+kind: ApicurioRegistry
+metadata:
+  name: apicurioregistry-rds
+spec:
+  configuration:
+    persistence: sql
+    sql:
+      dataSource:
+        url: jdbc:postgresql://${RDS_ENDPOINT}:${RDS_PORT}/${RDS_DATABASE}
+        username: ${RDS_USERNAME}
+        password: ${RDS_PASSWORD}
+  deployment:
+    host: ${REGISTRY_HOST}
